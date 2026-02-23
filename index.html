@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirzah's World 🌟</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#FF6B9D;--orange:#FF9F43;--yellow:#FFEAA7;--green:#55EFC4;--teal:#00CEC9;--blue:#74B9FF;--purple:#A29BFE;--plum:#6C5CE7;--cream:#FFF9F0;--ink:#2D2346;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+
+/* HEADER */
+header{background:linear-gradient(150deg,#1a1040,#4A3468,#6C5CE7);padding:40px 20px 64px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:0;background-image:radial-gradient(white 1px,transparent 1px);background-size:32px 32px;opacity:.06}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;gap:24px;align-items:center;flex-wrap:wrap;position:relative;z-index:1}
+.logo{width:96px;height:96px;background:linear-gradient(135deg,var(--rose),var(--orange));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6rem;box-shadow:0 0 0 6px rgba(255,255,255,.15),0 12px 36px rgba(0,0,0,.3);animation:float 3s ease-in-out infinite;flex-shrink:0}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+.header-text h1{font-family:'Baloo 2',cursive;font-size:clamp(2rem,5vw,3rem);color:#fff;line-height:1}
+.header-text p{color:rgba(255,255,255,.75);font-size:1rem;margin-top:6px}
+.score-pill{background:var(--yellow);color:var(--ink);font-weight:800;font-size:.85rem;padding:6px 18px;border-radius:50px;display:inline-block;margin-top:10px}
+
+/* TABS */
+.tabs{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
+.tabs-inner{max-width:1100px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab-btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.82rem;padding:14px 16px;border:none;background:none;cursor:pointer;color:#999;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+.tab-btn.active,.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{border-bottom-color:var(--plum)}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:28px 14px 80px}
+.section{display:none}.section.active{display:block}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.sec-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.sec-head h2{font-family:'Baloo 2',cursive;font-size:1.7rem}
+.sec-head p{font-size:.88rem;color:#888;margin-top:2px}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border-radius:var(--r);padding:20px;box-shadow:0 3px 12px rgba(0,0,0,.07);border:2px solid transparent;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.card h3{font-size:1rem;margin-bottom:6px}
+.card p{font-size:.85rem;color:#666;line-height:1.5}
+.tag{display:inline-block;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+
+/* ACTIVITY BOX */
+.abox{background:#fff;border-radius:var(--r);padding:24px;box-shadow:0 3px 14px rgba(0,0,0,.07);margin-bottom:22px}
+.abox h3{font-family:'Baloo 2',cursive;font-size:1.3rem;margin-bottom:4px}
+.abox .sub{font-size:.84rem;color:#888;margin-bottom:18px}
+
+/* PROMPT */
+.prompt{background:linear-gradient(135deg,var(--plum),#4A3468);color:#fff;border-radius:14px;padding:20px;text-align:center;margin-bottom:16px}
+.prompt .qtext{font-family:'Baloo 2',cursive;font-size:1.6rem;line-height:1.3}
+.prompt .hint{font-size:.82rem;opacity:.7;margin-top:4px}
+
+/* CHOICE GRIDS */
+.grid4{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:460px}
+.grid4.wide{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));max-width:100%}
+.choice-btn{padding:14px 10px;border-radius:12px;border:2.5px solid #e8e4f0;background:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:all .15s;text-align:center}
+.choice-btn:hover{border-color:var(--plum);background:#f5f3ff}
+.choice-btn.correct{background:var(--green);border-color:#00b894;color:#fff}
+.choice-btn.wrong{background:var(--rose);border-color:var(--rose);color:#fff;animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* LETTER GRID */
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:8px;margin-bottom:16px}
+.letter-btn{height:60px;border-radius:12px;border:2.5px solid #e8e4f0;background:#fff;font-family:'Baloo 2',cursive;font-size:1.5rem;cursor:pointer;transition:all .15s}
+.letter-btn:hover{border-color:var(--blue);transform:scale(1.06)}
+.letter-btn.correct{background:var(--green);border-color:#00b894;color:#fff}
+.letter-btn.wrong{background:var(--rose);border-color:var(--rose);color:#fff;animation:shake .3s}
+
+/* FEEDBACK */
+.feedback{min-height:34px;text-align:center;font-family:'Baloo 2',cursive;font-size:1.2rem;margin:10px 0}
+.feedback.good{color:#00b894}.feedback.bad{color:var(--rose)}
+
+/* BTNS */
+.btn{font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;padding:11px 22px;border-radius:50px;border:none;cursor:pointer;transition:all .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.14)}
+.btn-plum{background:var(--plum);color:#fff}
+.btn-rose{background:var(--rose);color:#fff}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-orange{background:var(--orange);color:#fff}
+.btn-outline{background:#fff;color:var(--ink);border:2.5px solid #e8e4f0}
+
+/* SCORE CHIP */
+.score-chip{font-weight:800;font-size:.88rem;margin-left:auto}
+
+/* CANVAS */
+canvas{border:3px dashed #d4cfe8;border-radius:14px;display:block;width:100%;max-width:560px;height:180px;cursor:crosshair;touch-action:none;background:white}
+
+/* PATTERN DISPLAY */
+.pattern-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.pattern-shape{width:56px;height:56px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:2rem;border:3px solid #e8e4f0}
+.pattern-blank{width:56px;height:56px;border-radius:8px;border:3px dashed var(--plum);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--plum);background:#f5f3ff;font-weight:800}
+
+/* PROGRESS */
+.skill-row{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.skill-lbl{width:170px;font-weight:700;font-size:.85rem}
+.bar-wrap{flex:1;background:#eee;border-radius:50px;height:15px;overflow:hidden}
+.bar{height:100%;border-radius:50px;transition:width .8s}
+.pct{width:36px;font-weight:800;font-size:.82rem;text-align:right}
+
+/* TIP */
+.tip{background:linear-gradient(135deg,#f5f3ff,#ede8ff);border-left:5px solid var(--plum);padding:16px 18px;border-radius:0 12px 12px 0;margin-bottom:14px;font-size:.9rem;line-height:1.6}
+.tip strong{color:var(--plum)}
+
+/* WEEK GRID */
+.week-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.day-card{border-radius:var(--r);padding:18px;color:#fff}
+.day-card h4{font-family:'Baloo 2',cursive;font-size:1.1rem;margin-bottom:8px}
+.day-card li{font-size:.82rem;margin-left:14px;line-height:1.9}
+
+/* MILESTONE */
+.milestone-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:16px}
+.milestone{background:#fff;border-radius:14px;padding:18px;border-left:5px solid var(--plum);box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.milestone h4{font-family:'Baloo 2',cursive;font-size:1rem;color:var(--plum);margin-bottom:6px}
+.milestone p{font-size:.84rem;color:#666;line-height:1.6}
+
+/* DOTS DISPLAY */
+.dots-area{font-size:2rem;text-align:center;min-height:70px;margin:12px 0;line-height:1.4}
+
+/* SENTENCE BUILDER */
+.sentence-words{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.word-chip{padding:10px 16px;border-radius:50px;border:2.5px solid #e8e4f0;background:#fff;font-weight:800;cursor:pointer;font-size:.95rem;transition:all .15s}
+.word-chip:hover{border-color:var(--teal);background:#f0fffc}
+.word-chip.used{opacity:.35;pointer-events:none}
+.sentence-box{min-height:52px;border:3px dashed var(--teal);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:'Baloo 2',cursive;font-size:1.1rem;background:#f0fffc;margin-bottom:12px}
+
+/* COMPARE */
+.compare-row{display:flex;gap:20px;align-items:center;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.compare-box{background:#fff;border-radius:14px;padding:18px 28px;text-align:center;border:3px solid #e8e4f0;min-width:130px}
+.compare-num{font-family:'Baloo 2',cursive;font-size:3.5rem;color:var(--plum)}
+.compare-label{font-size:.8rem;color:#888;margin-top:4px}
+
+/* SHAPE */
+.shape-display{text-align:center;font-size:5rem;margin:16px 0;animation:popIn .3s}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* WJ BADGE */
+.wj-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(108,92,231,.1);color:var(--plum);border-radius:50px;padding:5px 14px;font-size:.78rem;font-weight:800;margin-bottom:14px}
+
+/* STARS ROW */
+.stars-big{font-size:1.8rem;letter-spacing:2px}
+
+.flex-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">🌟</div>
+    <div class="header-text">
+      <h1>Tirzah's World</h1>
+      <p>Woodcock-Johnson IV aligned kindergarten prep — Reading, Math, Writing & more!</p>
+      <div class="score-pill">📊 Starting WJ-IV Score: 51 (Average) → Let's grow to Above Average! 🚀</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active"   onclick="show('letters',this)">📖 Letter ID</button>
+    <button class="tab-btn"          onclick="show('phonics',this)">🔤 Phonics</button>
+    <button class="tab-btn"          onclick="show('reading',this)">📚 Reading</button>
+    <button class="tab-btn"          onclick="show('math',this)">🔢 Math</button>
+    <button class="tab-btn"          onclick="show('patterns',this)">🔷 Patterns</button>
+    <button class="tab-btn"          onclick="show('vocab',this)">💬 Vocab</button>
+    <button class="tab-btn"          onclick="show('listening',this)">👂 Listening</button>
+    <button class="tab-btn"          onclick="show('writing',this)">✏️ Writing</button>
+    <button class="tab-btn"          onclick="show('schedule',this)">📅 Plan</button>
+    <button class="tab-btn"          onclick="show('progress',this)">🌟 Progress</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ████ LETTER ID ████ -->
+<div id="letters" class="section active">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#eef4ff">📖</div>
+    <div><h2 style="color:var(--blue)">Letter Identification</h2><p>WJ-IV Subtest 1 — Name uppercase & lowercase letters on sight</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Letter-Word Identification</div>
+
+  <div class="abox">
+    <h3>🎯 Letter Name Game</h3>
+    <p class="sub">Tap the letter that matches what you see or hear.</p>
+    <div class="prompt" id="lPrompt"><div class="qtext" id="lQ">Loading…</div><div class="hint" id="lHint"></div></div>
+    <div class="letter-grid" id="lGrid"></div>
+    <div class="feedback" id="lFb"></div>
+    <div class="flex-row"><button class="btn btn-plum" onclick="nextLetter()">Next ▶</button><span class="score-chip" id="lSc" style="color:var(--blue)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🔡 Uppercase ↔ Lowercase Match</h3>
+    <p class="sub">Match the capital letter to its lowercase partner.</p>
+    <div class="prompt" id="casePrompt"><div class="qtext" id="caseQ">A</div><div class="hint">Find the lowercase version</div></div>
+    <div class="grid4 wide" id="caseGrid"></div>
+    <div class="feedback" id="caseFb"></div>
+    <div class="flex-row"><button class="btn btn-plum" onclick="nextCase()">Next ▶</button><span class="score-chip" id="caseSc" style="color:var(--blue)">0/0</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="border-color:var(--blue)"><div class="tag" style="background:#eef4ff;color:var(--blue)">Daily 5 min</div><h3>🧲 Fridge Letters</h3><p>Magnetic alphabet on the fridge. Spell names, CVC words, move letters daily. Best tactile learning tool.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="tag" style="background:#f5f3ff;color:var(--plum)">App</div><h3>📱 Starfall ABC</h3><p>Free animated letter-sound pairings. 10-min sessions reinforce both name and sound of every letter.</p></div>
+    <div class="card" style="border-color:var(--green)"><div class="tag" style="background:#f0fffc;color:var(--teal)">Milestone</div><h3>🏆 Goal: 8 weeks</h3><p>Know all 26 uppercase letters by name. Know 20 lowercase letters by name. Match upper ↔ lower for A–Z.</p></div>
+  </div>
+</div>
+
+<!-- ████ PHONICS ████ -->
+<div id="phonics" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fff0f5">🔤</div>
+    <div><h2 style="color:var(--rose)">Phonics & Phonemic Awareness</h2><p>WJ-IV Subtests — Word Attack, Sound Blending, Phonological Processing</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Word Attack · Sound Blending · Phonological Processing</div>
+
+  <div class="abox">
+    <h3>🎵 Rhyme Finder</h3>
+    <p class="sub">Which word rhymes? Rhyming = phonemic awareness = #1 reading predictor.</p>
+    <div class="prompt"><div class="qtext" id="rhymeQ">CAT</div><div class="hint">Find the word that sounds like it!</div></div>
+    <div class="grid4 wide" id="rhymeGrid"></div>
+    <div class="feedback" id="rhymeFb"></div>
+    <div class="flex-row"><button class="btn btn-rose" onclick="nextRhyme()">Next ▶</button><span class="score-chip" id="rhymeSc" style="color:var(--rose)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🔗 Sound Blending (CVC Words)</h3>
+    <p class="sub">Blend the sounds together — what word do they make?</p>
+    <div class="prompt"><div class="qtext" id="blendQ" style="letter-spacing:8px">c - a - t</div><div class="hint">Say it fast!</div></div>
+    <div class="grid4 wide" id="blendGrid"></div>
+    <div class="feedback" id="blendFb"></div>
+    <div class="flex-row"><button class="btn btn-rose" onclick="nextBlend()">Next ▶</button><span class="score-chip" id="blendSc" style="color:var(--rose)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>✂️ Sound Segmentation</h3>
+    <p class="sub">How many sounds (phonemes) does the word have?</p>
+    <div class="prompt"><div class="qtext" id="segQ">CAT</div><div class="hint">Count each sound: c / a / t = 3</div></div>
+    <div class="grid4" id="segGrid"></div>
+    <div class="feedback" id="segFb"></div>
+    <div class="flex-row"><button class="btn btn-rose" onclick="nextSeg()">Next ▶</button><span class="score-chip" id="segSc" style="color:var(--rose)">0/0</span></div>
+  </div>
+
+  <div class="tip"><strong>💡 Parent Tip:</strong> During bath time play "I Spy — I spy something that starts with /b/". This is free, zero-prep phonemic awareness that researchers say matters more than worksheets.</div>
+</div>
+
+<!-- ████ READING ████ -->
+<div id="reading" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fffbea">📚</div>
+    <div><h2 style="color:var(--orange)">Early Reading & Comprehension</h2><p>WJ-IV Subtests — Passage Comprehension, Reading Vocabulary, Oral Reading</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Passage Comprehension · Reading Vocabulary · Oral Reading</div>
+
+  <div class="abox">
+    <h3>👁 Sight Word Flash</h3>
+    <p class="sub">Dolch/Fry sight words — tap the word that matches!</p>
+    <div class="prompt"><div class="qtext" id="sightQ">THE</div><div class="hint">Find this word below</div></div>
+    <div class="grid4 wide" id="sightGrid"></div>
+    <div class="feedback" id="sightFb"></div>
+    <div class="flex-row"><button class="btn btn-orange" onclick="nextSight()">Next ▶</button><span class="score-chip" id="sightSc" style="color:var(--orange)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>📖 Story Comprehension</h3>
+    <p class="sub">Listen to the short story, then answer the question.</p>
+    <div class="prompt" id="storyBox"><div class="qtext" id="storyText" style="font-size:1.1rem;line-height:1.5">Loading...</div></div>
+    <p class="sub" id="storyQuestion" style="font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:12px"></p>
+    <div class="grid4 wide" id="storyGrid"></div>
+    <div class="feedback" id="storyFb"></div>
+    <div class="flex-row"><button class="btn btn-orange" onclick="nextStory()">Next Story ▶</button><span class="score-chip" id="storySc" style="color:var(--orange)">0/0</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="border-color:var(--orange)"><div class="tag" style="background:#fffbea;color:#c06000">Must-have</div><h3>📕 Bob Books Set 1</h3><p>Simple decodable readers. Read 1 per day — 5 minutes. Best first step before sounding out real words.</p></div>
+    <div class="card" style="border-color:var(--rose)"><div class="tag" style="background:#fff0f5;color:var(--rose)">Program</div><h3>📗 All About Reading</h3><p>Pre-Reading level is perfect for this age. Scripted for parents — very low-prep, high results.</p></div>
+    <div class="card" style="border-color:var(--teal)"><div class="tag" style="background:#f0fffc;color:var(--teal)">Habit</div><h3>🛏 Bedtime Stories</h3><p>Reading aloud nightly grows vocabulary, listening comprehension, and print awareness all at once.</p></div>
+  </div>
+</div>
+
+<!-- ████ MATH ████ -->
+<div id="math" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#f0fffc">🔢</div>
+    <div><h2 style="color:var(--teal)">Math Fluency & Reasoning</h2><p>WJ-IV Subtests — Applied Problems, Calculation, Math Facts Fluency, Number Sense</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Applied Problems · Calculation · Math Facts Fluency</div>
+
+  <div class="abox">
+    <h3>🔵 Count the Dots</h3>
+    <p class="sub">Count carefully and tap the right number (0–20 range).</p>
+    <div class="dots-area" id="dotsArea"></div>
+    <div class="grid4 wide" id="mathGrid"></div>
+    <div class="feedback" id="mathFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextDots()">Next ▶</button><span class="score-chip" id="mathSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>⚖️ More or Less?</h3>
+    <p class="sub">Which group has more? Tap the bigger number.</p>
+    <div class="compare-row" id="compareRow"></div>
+    <div class="grid4" id="compareGrid"></div>
+    <div class="feedback" id="compareFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextCompare()">Next ▶</button><span class="score-chip" id="compareSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>➕ Simple Addition</h3>
+    <p class="sub">Solve the addition problem with objects to help you count!</p>
+    <div class="prompt"><div class="qtext" id="addQ">2 + 3 = ?</div><div class="hint" id="addHint"></div></div>
+    <div class="grid4" id="addGrid"></div>
+    <div class="feedback" id="addFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextAdd()">Next ▶</button><span class="score-chip" id="addSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🔷 Shape Recognition</h3>
+    <p class="sub">Name the shape shown! Kindergarten expects 8 basic shapes.</p>
+    <div class="shape-display" id="shapeDisplay">🔵</div>
+    <div class="grid4 wide" id="shapeGrid"></div>
+    <div class="feedback" id="shapeFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextShape()">Next ▶</button><span class="score-chip" id="shapeSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="border-color:var(--teal)"><div class="tag" style="background:#f0fffc;color:var(--teal)">Everyday</div><h3>🍇 Snack Math</h3><p>"Give me 7 grapes." "Who has more?" Real objects beat worksheets for this age.</p></div>
+    <div class="card" style="border-color:var(--blue)"><div class="tag" style="background:#eef4ff;color:var(--blue)">Game</div><h3>🃏 UNO Cards</h3><p>Great for 1–9 number recognition. Play together — skip special rules at first.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="tag" style="background:#f5f3ff;color:var(--plum)">Toy</div><h3>🐻 Counting Bears</h3><p>Sort by color. Compare groups. Count sets. Hands-on = better retention at this age.</p></div>
+  </div>
+</div>
+
+<!-- ████ PATTERNS ████ -->
+<div id="patterns" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#f5f3ff">🔷</div>
+    <div><h2 style="color:var(--plum)">Patterns & Reasoning</h2><p>WJ-IV Subtests — Concept Formation, Visual Matching, Analysis-Synthesis</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Concept Formation · Visual Matching · Analysis-Synthesis</div>
+
+  <div class="abox">
+    <h3>🔮 What Comes Next?</h3>
+    <p class="sub">Study the pattern and tap what comes next in the sequence.</p>
+    <div class="pattern-row" id="patRow"></div>
+    <div class="grid4 wide" id="patGrid"></div>
+    <div class="feedback" id="patFb"></div>
+    <div class="flex-row"><button class="btn btn-plum" onclick="nextPattern()">Next ▶</button><span class="score-chip" id="patSc" style="color:var(--plum)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🎨 Color Pattern</h3>
+    <p class="sub">What color comes next? Look at the repeating pattern.</p>
+    <div class="pattern-row" id="colorPatRow"></div>
+    <div class="grid4 wide" id="colorPatGrid"></div>
+    <div class="feedback" id="colorFb"></div>
+    <div class="flex-row"><button class="btn btn-plum" onclick="nextColorPat()">Next ▶</button><span class="score-chip" id="colorSc" style="color:var(--plum)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🔍 Which One is Different?</h3>
+    <p class="sub">Three items belong together. Tap the one that doesn't fit!</p>
+    <div class="pattern-row" id="oddRow"></div>
+    <div class="feedback" id="oddFb"></div>
+    <div class="flex-row" style="margin-top:8px"><button class="btn btn-plum" onclick="nextOdd()">Next ▶</button><span class="score-chip" id="oddSc" style="color:var(--plum)">0/0</span></div>
+  </div>
+
+  <div class="tip"><strong>🔷 Why Patterns Matter:</strong> Pattern recognition on the WJ-IV predicts fluid reasoning and mathematical thinking. Build this with everyday activities: clapping rhythms, stacking blocks in AB/ABC patterns, or arranging fruit by color.</div>
+</div>
+
+<!-- ████ VOCAB ████ -->
+<div id="vocab" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fff0f5">💬</div>
+    <div><h2 style="color:var(--rose)">Vocabulary & Oral Language</h2><p>WJ-IV Subtests — Picture Vocabulary, Oral Vocabulary, Verbal Analogies</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Picture Vocabulary · Oral Vocabulary · Verbal Analogies</div>
+
+  <div class="abox">
+    <h3>🖼 What Is It?</h3>
+    <p class="sub">Look at the picture/emoji and choose the correct name.</p>
+    <div class="prompt"><div class="qtext" id="vocabEmoji" style="font-size:4rem">🌺</div><div class="hint">What is this called?</div></div>
+    <div class="grid4 wide" id="vocabGrid"></div>
+    <div class="feedback" id="vocabFb"></div>
+    <div class="flex-row"><button class="btn btn-rose" onclick="nextVocab()">Next ▶</button><span class="score-chip" id="vocabSc" style="color:var(--rose)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>🔁 Verbal Analogies</h3>
+    <p class="sub">Finish the pattern: "Dog is to puppy as cat is to ___?"</p>
+    <div class="prompt"><div class="qtext" id="analogyQ" style="font-size:1.15rem;line-height:1.4">Loading...</div></div>
+    <div class="grid4 wide" id="analogyGrid"></div>
+    <div class="feedback" id="analogyFb"></div>
+    <div class="flex-row"><button class="btn btn-rose" onclick="nextAnalogy()">Next ▶</button><span class="score-chip" id="analogySc" style="color:var(--rose)">0/0</span></div>
+  </div>
+
+  <div class="tip"><strong>💬 Vocab Tip:</strong> WJ-IV oral vocabulary is largely built through rich conversation. Narrate your day: "I'm cutting the celery diagonally." Use real, specific words — kids absorb vocabulary through context, not drilling.</div>
+</div>
+
+<!-- ████ LISTENING ████ -->
+<div id="listening" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#f0fffc">👂</div>
+    <div><h2 style="color:var(--teal)">Listening Comprehension</h2><p>WJ-IV Subtests — Understanding Directions, Oral Comprehension, Story Recall</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Understanding Directions · Oral Comprehension · Story Recall</div>
+
+  <div class="abox">
+    <h3>📋 Follow the Directions</h3>
+    <p class="sub">Read the direction to Tirzah and she taps the right answer.</p>
+    <div class="prompt"><div class="qtext" id="dirQ" style="font-size:1.2rem;line-height:1.4">Tap the animal that lives in the water.</div></div>
+    <div class="grid4 wide" id="dirGrid"></div>
+    <div class="feedback" id="dirFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextDir()">Next ▶</button><span class="score-chip" id="dirSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="abox">
+    <h3>📖 Story Recall</h3>
+    <p class="sub">Read the story aloud to Tirzah, then ask the question!</p>
+    <div class="prompt" style="background:linear-gradient(135deg,var(--teal),#009688)">
+      <div class="qtext" id="recallStory" style="font-size:1rem;line-height:1.6">Loading...</div>
+    </div>
+    <p style="font-weight:800;font-size:1rem;margin:10px 0" id="recallQ"></p>
+    <div class="grid4 wide" id="recallGrid"></div>
+    <div class="feedback" id="recallFb"></div>
+    <div class="flex-row"><button class="btn btn-teal" onclick="nextRecall()">Next ▶</button><span class="score-chip" id="recallSc" style="color:var(--teal)">0/0</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="border-color:var(--teal)"><div class="tag" style="background:#f0fffc;color:var(--teal)">Daily</div><h3>🗣 Two-Step Directions</h3><p>"Touch your nose, then jump!" Practice 2-step verbal directions daily — this directly trains WJ-IV Understanding Directions.</p></div>
+    <div class="card" style="border-color:var(--blue)"><div class="tag" style="background:#eef4ff;color:var(--blue)">Habit</div><h3>❓ Story Questions</h3><p>After reading: "Who was in the story? What happened first? Why was she happy?" 3 questions per book.</p></div>
+  </div>
+</div>
+
+<!-- ████ WRITING ████ -->
+<div id="writing" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fffbea">✏️</div>
+    <div><h2 style="color:var(--orange)">Writing & Expression</h2><p>WJ-IV Subtests — Spelling, Writing Samples, Sentence Writing Fluency</p></div>
+  </div>
+  <div class="wj-badge">🧪 WJ-IV: Spelling · Writing Samples · Sentence Writing Fluency</div>
+
+  <div class="abox">
+    <h3>✍️ Letter Tracing Canvas</h3>
+    <p class="sub">Trace the letter shown. Use finger (phone) or mouse (computer).</p>
+    <div style="text-align:center;font-family:'Baloo 2',cursive;font-size:4rem;color:#d0c8e8;margin-bottom:8px" id="traceLetter">A</div>
+    <canvas id="traceCanvas" width="560" height="180"></canvas>
+    <div class="flex-row" style="margin-top:12px">
+      <button class="btn btn-outline" onclick="clearCanvas()">🗑 Clear</button>
+      <button class="btn btn-orange" onclick="nextTrace()">Next Letter ▶</button>
+    </div>
+  </div>
+
+  <div class="abox">
+    <h3>🧩 Build a Sentence</h3>
+    <p class="sub">Tap the words in the right order to build a sentence!</p>
+    <div class="sentence-box" id="sentBox">Tap words to build your sentence…</div>
+    <div class="sentence-words" id="sentWords"></div>
+    <div class="feedback" id="sentFb"></div>
+    <div class="flex-row">
+      <button class="btn btn-outline" onclick="resetSent()">🔄 Reset</button>
+      <button class="btn btn-orange" onclick="checkSent()">✅ Check</button>
+      <button class="btn btn-orange" onclick="nextSent()">Next ▶</button>
+    </div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="border-color:var(--orange)"><div class="tag" style="background:#fffbea;color:#c06000">Daily</div><h3>📝 Name Writing</h3><p>Every morning before breakfast — write TIRZAH. Even wobbly is great. Builds muscle memory fast.</p></div>
+    <div class="card" style="border-color:var(--rose)"><div class="tag" style="background:#fff0f5;color:var(--rose)">Creative</div><h3>🖼 Draw & Dictate</h3><p>Draw a picture → say a sentence → parent writes it → child traces it. Builds reading + writing together.</p></div>
+    <div class="card" style="border-color:var(--purple)"><div class="tag" style="background:#f5f3ff;color:var(--plum)">Fine Motor</div><h3>✂️ Scissors & Clay</h3><p>Cutting and kneading build hand strength for pencil grip. Do 10 min 3×/week.</p></div>
+  </div>
+</div>
+
+<!-- ████ SCHEDULE ████ -->
+<div id="schedule" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fffbea">📅</div>
+    <div><h2 style="color:var(--orange)">12-Month Plan</h2><p>15–20 minutes/day, 5 days/week. Consistent beats intensive every time.</p></div>
+  </div>
+
+  <div class="abox">
+    <h3>📆 Weekly Routine</h3>
+    <p class="sub">Keep sessions short, positive, and consistent. Stop while she's still having fun.</p>
+    <div class="week-grid" style="margin-top:16px">
+      <div class="day-card" style="background:linear-gradient(135deg,var(--blue),#4a90e2)"><h4>Monday</h4><ul><li>10 min: Letters + Phonics</li><li>5 min: Write name</li><li>Read 1 book aloud</li></ul></div>
+      <div class="day-card" style="background:linear-gradient(135deg,var(--teal),#009688)"><h4>Tuesday</h4><ul><li>10 min: Counting + Math</li><li>5 min: Directions game</li><li>UNO or counting bears</li></ul></div>
+      <div class="day-card" style="background:linear-gradient(135deg,var(--rose),#e84393)"><h4>Wednesday</h4><ul><li>10 min: Phonics + Rhyme</li><li>5 min: Letter tracing</li><li>Read 1 book aloud</li></ul></div>
+      <div class="day-card" style="background:linear-gradient(135deg,var(--plum),#4A3468)"><h4>Thursday</h4><ul><li>10 min: Shapes + Patterns</li><li>5 min: Draw & dictate</li><li>Vocabulary chat</li></ul></div>
+      <div class="day-card" style="background:linear-gradient(135deg,var(--orange),#f09020)"><h4>Friday</h4><ul><li>10 min: Sight words</li><li>5 min: Sentence building</li><li>Pick a favorite book</li></ul></div>
+      <div class="day-card" style="background:linear-gradient(135deg,#a0a0a0,#777)"><h4>Weekend</h4><ul><li>Library visit</li><li>Outdoor counting</li><li>Free play — rest!</li></ul></div>
+    </div>
+  </div>
+
+  <div class="abox">
+    <h3>🗓 Month-by-Month WJ-IV Milestones</h3>
+    <p class="sub">Track Tirzah's progress against kindergarten readiness benchmarks.</p>
+    <div class="milestone-grid">
+      <div class="milestone"><h4>Months 1–2</h4><p>✅ A–M letters by name<br>✅ Count 1–10 reliably<br>✅ 5 rhyming pairs<br>✅ Hold pencil correctly</p></div>
+      <div class="milestone"><h4>Months 3–4</h4><p>✅ A–Z uppercase<br>✅ Count 1–15<br>✅ 10 sight words<br>✅ Trace all uppercase letters</p></div>
+      <div class="milestone"><h4>Months 5–6</h4><p>✅ All letter sounds<br>✅ Count to 20<br>✅ Write own name<br>✅ Blend 3-letter CVC words</p></div>
+      <div class="milestone"><h4>Months 7–8</h4><p>✅ Read simple 3-letter words<br>✅ Add with objects ≤5<br>✅ 20 sight words<br>✅ Shapes + patterns</p></div>
+      <div class="milestone"><h4>Months 9–10</h4><p>✅ Simple sentences<br>✅ Subtract ≤5<br>✅ 30 sight words<br>✅ Follow 3-step directions</p></div>
+      <div class="milestone"><h4>Months 11–12</h4><p>✅ Read Bob Books alone<br>✅ Numbers 0–20<br>✅ Write 2+ sentences<br>✅ 🎉 WJ-IV RETAKE READY!</p></div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>🎯 WJ-IV Target:</strong> Starting at 51 (Average), a consistent 15-min/day practice routine has been shown to move scores 10–15+ points over a year. Target: 62–66 (High Average / Above Average) by next test.</div>
+</div>
+
+<!-- ████ PROGRESS ████ -->
+<div id="progress" class="section">
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#fffbea">🌟</div>
+    <div><h2 style="color:var(--orange)">Tirzah's Progress</h2><p>Stars earned and skill levels from today's practice session.</p></div>
+  </div>
+
+  <div class="abox">
+    <h3>⭐ Stars Earned Today</h3>
+    <div class="stars-big" id="starDisplay" style="margin:16px 0">—</div>
+    <p style="color:#888;font-size:.88rem">Play games across all sections to earn stars!</p>
+  </div>
+
+  <div class="abox">
+    <h3>📊 WJ-IV Skill Bars</h3>
+    <p class="sub">Based on your correct answers this session.</p>
+    <div id="skillBars" style="margin-top:8px">
+      <div class="skill-row"><span class="skill-lbl">📖 Letter ID</span><div class="bar-wrap"><div class="bar" id="bar-letters" style="width:0%;background:var(--blue)"></div></div><span class="pct" id="pct-letters">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">🔤 Phonics</span><div class="bar-wrap"><div class="bar" id="bar-phonics" style="width:0%;background:var(--rose)"></div></div><span class="pct" id="pct-phonics">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">📚 Reading</span><div class="bar-wrap"><div class="bar" id="bar-reading" style="width:0%;background:var(--orange)"></div></div><span class="pct" id="pct-reading">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">🔢 Math</span><div class="bar-wrap"><div class="bar" id="bar-math" style="width:0%;background:var(--teal)"></div></div><span class="pct" id="pct-math">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">🔷 Patterns</span><div class="bar-wrap"><div class="bar" id="bar-patterns" style="width:0%;background:var(--plum)"></div></div><span class="pct" id="pct-patterns">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">💬 Vocabulary</span><div class="bar-wrap"><div class="bar" id="bar-vocab" style="width:0%;background:var(--rose)"></div></div><span class="pct" id="pct-vocab">—</span></div>
+      <div class="skill-row"><span class="skill-lbl">👂 Listening</span><div class="bar-wrap"><div class="bar" id="bar-listening" style="width:0%;background:var(--teal)"></div></div><span class="pct" id="pct-listening">—</span></div>
+    </div>
+  </div>
+
+  <div class="abox" style="background:linear-gradient(135deg,#1a1040,#4A3468);color:#fff">
+    <h3 style="color:#fff">🎓 WJ-IV Score Projection</h3>
+    <p style="opacity:.8;font-size:.88rem;margin-bottom:16px">Estimated growth based on consistent 15-min/day practice.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px">
+      <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px;text-align:center">
+        <div style="font-family:'Baloo 2',cursive;font-size:2.2rem;color:var(--yellow)">51</div>
+        <div style="font-size:.8rem;opacity:.7">Starting Score</div>
+        <div style="font-size:.75rem;margin-top:4px;color:var(--green)">Average Range</div>
+      </div>
+      <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px;text-align:center">
+        <div style="font-family:'Baloo 2',cursive;font-size:2.2rem;color:var(--yellow)">56–60</div>
+        <div style="font-size:.8rem;opacity:.7">6 Month Goal</div>
+        <div style="font-size:.75rem;margin-top:4px;color:var(--green)">Average-High Average</div>
+      </div>
+      <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px;text-align:center">
+        <div style="font-family:'Baloo 2',cursive;font-size:2.2rem;color:var(--yellow)">63–68</div>
+        <div style="font-size:.8rem;opacity:.7">12 Month Goal</div>
+        <div style="font-size:.75rem;margin-top:4px;color:var(--green)">High Average 🎉</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>💛 Remember:</strong> A WJ-IV score of 51 at age 3–4 is perfectly on track. Formal instruction in kindergarten moves scores significantly. Daily reading together matters more than any worksheet. You're already giving Tirzah a huge head start! 🌟</div>
+</div>
+
+</main>
+
+<script>
+// ═══════════════════════════════════
+// GLOBAL STATE
+// ═══════════════════════════════════
+const SC = {letters:[[],[],'lSc'],caseGame:[[],[],'caseSc'],rhyme:[[],[],'rhymeSc'],blend:[[],[],'blendSc'],seg:[[],[],'segSc'],sight:[[],[],'sightSc'],story:[[],[],'storySc'],dots:[[],[],'mathSc'],compare:[[],[],'compareSc'],add:[[],[],'addSc'],shape:[[],[],'shapeSc'],pat:[[],[],'patSc'],colorPat:[[],[],'colorSc'],odd:[[],[],'oddSc'],vocab:[[],[],'vocabSc'],analogy:[[],[],'analogySc'],dir:[[],[],'dirSc'],recall:[[],[],'recallSc']};
+let totalStars = 0;
+
+function tally(key, correct) {
+  SC[key][1]++;
+  if(correct){ SC[key][0]++; totalStars++; }
+  const el = document.getElementById(SC[key][2]);
+  if(el) el.textContent = SC[key][0]+'/'+SC[key][1];
+}
+function show(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='progress') updateProgress();
+}
+function renderChoices(containerId, choices, answer, fbId, key, onCorrect){
+  const box = document.getElementById(containerId);
+  box.innerHTML = '';
+  [...choices].sort(()=>Math.random()-.5).forEach(c=>{
+    const b=document.createElement('button');
+    b.className='choice-btn';
+    b.textContent=c;
+    b.onclick=()=>{
+      const ok = c===answer;
+      b.classList.add(ok?'correct':'wrong');
+      const fb=document.getElementById(fbId);
+      fb.textContent=ok?'🎉 Correct!':'❌ Not quite — it\'s '+answer+'!';
+      fb.className='feedback '+(ok?'good':'bad');
+      tally(key,ok);
+      if(ok){ setTimeout(onCorrect,900); }
+      else { setTimeout(()=>b.classList.remove('wrong'),600); }
+    };
+    box.appendChild(b);
+  });
+}
+
+// ═══════════════════════════════════
+// LETTER ID
+// ═══════════════════════════════════
+const letterQs = [
+  {q:'🐱 What letter does CAT start with?',a:'C',hint:'c-a-t'},
+  {q:'🌞 What letter does SUN start with?',a:'S',hint:'s-u-n'},
+  {q:'🍎 What letter does APPLE start with?',a:'A',hint:'a-p-p-l-e'},
+  {q:'🐶 What letter does DOG start with?',a:'D',hint:'d-o-g'},
+  {q:'🌈 What letter does RAINBOW start with?',a:'R',hint:'r-a-i-n-b-o-w'},
+  {q:'🐘 What letter does ELEPHANT start with?',a:'E',hint:'e-l-e-p-h-a-n-t'},
+  {q:'🦁 What letter does LION start with?',a:'L',hint:'l-i-o-n'},
+  {q:'🎈 What letter does BALLOON start with?',a:'B',hint:'b-a-l-l-o-o-n'},
+  {q:'🐟 What letter does FISH start with?',a:'F',hint:'f-i-s-h'},
+  {q:'🦊 What letter does FOX start with?',a:'F',hint:'f-o-x'},
+  {q:'🏠 What letter does HOUSE start with?',a:'H',hint:'h-o-u-s-e'},
+  {q:'🍕 What letter does PIZZA start with?',a:'P',hint:'p-i-z-z-a'},
+  {q:'👑 What letter does QUEEN start with?',a:'Q',hint:'q-u-e-e-n'},
+  {q:'🐢 What letter does TURTLE start with?',a:'T',hint:'t-u-r-t-l-e'},
+  {q:'🌂 What letter does UMBRELLA start with?',a:'U',hint:'u-m-b-r-e-l-l-a'},
+  {q:'🎻 What letter does VIOLIN start with?',a:'V',hint:'v-i-o-l-i-n'},
+  {q:'🐋 What letter does WHALE start with?',a:'W',hint:'w-h-a-l-e'},
+  {q:'🦎 What letter does LIZARD start with?',a:'L',hint:'l-i-z-a-r-d'},
+  {q:'🦒 What letter does GIRAFFE start with?',a:'G',hint:'g-i-r-a-f-f-e'},
+  {q:'🧊 What letter does ICE start with?',a:'I',hint:'i-c-e'},
+];
+let lIdx=0;
+function nextLetter(){
+  const q=letterQs[lIdx%letterQs.length]; lIdx++;
+  document.getElementById('lQ').textContent=q.q;
+  document.getElementById('lHint').textContent=q.hint;
+  document.getElementById('lFb').textContent='';
+  document.getElementById('lFb').className='feedback';
+  const all='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const picks=[q.a];
+  while(picks.length<8){const r=all[Math.floor(Math.random()*26)];if(!picks.includes(r))picks.push(r);}
+  picks.sort(()=>Math.random()-.5);
+  const grid=document.getElementById('lGrid'); grid.innerHTML='';
+  picks.forEach(l=>{
+    const b=document.createElement('button'); b.className='letter-btn'; b.textContent=l;
+    b.onclick=()=>{
+      const ok=l===q.a; b.classList.add(ok?'correct':'wrong');
+      const fb=document.getElementById('lFb');
+      fb.textContent=ok?'🎉 Yes! '+q.a+'!':'❌ It\'s '+q.a;
+      fb.className='feedback '+(ok?'good':'bad');
+      tally('letters',ok);
+      if(ok)setTimeout(nextLetter,900); else setTimeout(()=>b.classList.remove('wrong'),600);
+    };
+    grid.appendChild(b);
+  });
+}
+
+// Case match
+const caseLetters='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+let caseIdx=0;
+function nextCase(){
+  const upper=caseLetters[caseIdx%caseLetters.length]; caseIdx++;
+  const lower=upper.toLowerCase();
+  document.getElementById('caseQ').textContent=upper;
+  document.getElementById('caseFb').textContent=''; document.getElementById('caseFb').className='feedback';
+  const wrong=[];
+  while(wrong.length<3){const r=caseLetters[Math.floor(Math.random()*26)].toLowerCase();if(r!==lower&&!wrong.includes(r))wrong.push(r);}
+  renderChoices('caseGrid',[lower,...wrong],lower,'caseFb','caseGame',nextCase);
+}
+
+// ═══════════════════════════════════
+// PHONICS
+// ═══════════════════════════════════
+const rhymes=[
+  {w:'CAT',a:'HAT',c:['HAT','SUN','BIG','TREE']},
+  {w:'DOG',a:'LOG',c:['LOG','CAT','FISH','BLUE']},
+  {w:'SUN',a:'RUN',c:['RUN','HAT','BALL','TREE']},
+  {w:'BIG',a:'PIG',c:['PIG','DOG','SUN','CAR']},
+  {w:'CAKE',a:'LAKE',c:['LAKE','DOG','FISH','JUMP']},
+  {w:'STAR',a:'CAR',c:['CAR','SUN','FROG','BALL']},
+  {w:'FISH',a:'DISH',c:['DISH','TREE','BIRD','CAT']},
+  {w:'RING',a:'SING',c:['SING','JUMP','BLUE','FISH']},
+  {w:'BALL',a:'TALL',c:['TALL','FISH','JUMP','TREE']},
+  {w:'NIGHT',a:'LIGHT',c:['LIGHT','DAY','FISH','RAIN']},
+  {w:'HOUSE',a:'MOUSE',c:['MOUSE','DOG','TREE','FISH']},
+  {w:'CAKE',a:'MAKE',c:['MAKE','CAT','FISH','BLUE']},
+];
+let rIdx=0;
+function nextRhyme(){
+  const q=rhymes[rIdx%rhymes.length]; rIdx++;
+  document.getElementById('rhymeQ').textContent=q.w;
+  document.getElementById('rhymeFb').textContent=''; document.getElementById('rhymeFb').className='feedback';
+  renderChoices('rhymeGrid',q.c,q.a,'rhymeFb','rhyme',nextRhyme);
+}
+
+const blends=[
+  {d:'c - a - t',a:'CAT',c:['CAT','DOG','SUN','HAT']},
+  {d:'d - o - g',a:'DOG',c:['DOG','CAT','PIG','BIG']},
+  {d:'s - u - n',a:'SUN',c:['SUN','RUN','FUN','BUN']},
+  {d:'b - i - g',a:'BIG',c:['BIG','PIG','DIG','JIG']},
+  {d:'h - o - t',a:'HOT',c:['HOT','GOT','NOT','DOT']},
+  {d:'r - u - n',a:'RUN',c:['RUN','GUN','BUN','SUN']},
+  {d:'f - i - sh',a:'FISH',c:['FISH','DISH','WISH','WASH']},
+  {d:'m - a - p',a:'MAP',c:['MAP','CAP','TAP','LAP']},
+  {d:'p - i - g',a:'PIG',c:['PIG','BIG','DIG','WIG']},
+  {d:'l - e - g',a:'LEG',c:['LEG','BEG','PEG','KEG']},
+  {d:'b - u - s',a:'BUS',c:['BUS','MUD','HUT','CUP']},
+  {d:'w - e - b',a:'WEB',c:['WEB','BED','RED','FED']},
+];
+let blIdx=0;
+function nextBlend(){
+  const q=blends[blIdx%blends.length]; blIdx++;
+  document.getElementById('blendQ').textContent=q.d;
+  document.getElementById('blendFb').textContent=''; document.getElementById('blendFb').className='feedback';
+  renderChoices('blendGrid',q.c,q.a,'blendFb','blend',nextBlend);
+}
+
+const segs=[
+  {w:'CAT',a:'3',c:['2','3','4','1']},
+  {w:'SUN',a:'3',c:['2','3','4','1']},
+  {w:'AT',a:'2',c:['1','2','3','4']},
+  {w:'FISH',a:'3',c:['2','3','4','5']},  // f-i-sh
+  {w:'SHOP',a:'3',c:['2','3','4','5']},  // sh-o-p
+  {w:'DOG',a:'3',c:['2','3','4','1']},
+  {w:'FROG',a:'4',c:['2','3','4','5']},
+  {w:'CHIP',a:'3',c:['2','3','4','1']},  // ch-i-p
+  {w:'ME',a:'2',c:['1','2','3','4']},
+];
+let segIdx=0;
+function nextSeg(){
+  const q=segs[segIdx%segs.length]; segIdx++;
+  document.getElementById('segQ').textContent=q.w;
+  document.getElementById('segFb').textContent=''; document.getElementById('segFb').className='feedback';
+  renderChoices('segGrid',q.c,q.a,'segFb','seg',nextSeg);
+}
+
+// ═══════════════════════════════════
+// READING
+// ═══════════════════════════════════
+const sightWords=['THE','AND','A','TO','IN','IS','IT','YOU','HE','SHE','WE','ON','AT','BE','GO','UP','DO','NO','MY','BY','ME','HIM','HER','ALL','CAN','RUN','SEE','ONE','TWO','ARE'];
+let sightIdx=0;
+function nextSight(){
+  const correct=sightWords[sightIdx%sightWords.length]; sightIdx++;
+  document.getElementById('sightQ').textContent=correct;
+  document.getElementById('sightFb').textContent=''; document.getElementById('sightFb').className='feedback';
+  const wrong=[]; const others=sightWords.filter(w=>w!==correct);
+  while(wrong.length<3) wrong.push(others[Math.floor(Math.random()*others.length)].replace(/./,()=>String.fromCharCode(65+Math.floor(Math.random()*26))));
+  // Use actual sight words as distractors
+  const distract=[]; while(distract.length<3){const r=others[Math.floor(Math.random()*others.length)];if(!distract.includes(r))distract.push(r);}
+  renderChoices('sightGrid',[correct,...distract],correct,'sightFb','sight',nextSight);
+}
+
+const stories=[
+  {t:'Mia saw a big red dog. The dog ran fast. It jumped over the log. Mia laughed.',q:'What did the dog jump over?',a:'The log',c:['The log','A fence','The tree','Mia']},
+  {t:'Sam has a blue ball. He tossed it up high. It hit the wall and bounced back.',q:'What color is Sam\'s ball?',a:'Blue',c:['Blue','Red','Green','Yellow']},
+  {t:'Lily woke up early. The sun was just coming up. She ate her cereal and smiled.',q:'What did Lily eat?',a:'Cereal',c:['Cereal','Eggs','Pancakes','Toast']},
+  {t:'Tom has three pets: a cat, a fish, and a bird. The cat sleeps all day.',q:'How many pets does Tom have?',a:'3',c:['3','2','4','1']},
+  {t:'It was raining. Jan grabbed her yellow boots and went outside to jump in puddles.',q:'What color are Jan\'s boots?',a:'Yellow',c:['Yellow','Blue','Red','Green']},
+  {t:'The bear was hungry. He found some honey in a tree. He ate it all up!',q:'What did the bear eat?',a:'Honey',c:['Honey','Fish','Berries','Nuts']},
+];
+let storyIdx=0;
+function nextStory(){
+  const q=stories[storyIdx%stories.length]; storyIdx++;
+  document.getElementById('storyText').textContent=q.t;
+  document.getElementById('storyQuestion').textContent='❓ '+q.q;
+  document.getElementById('storyFb').textContent=''; document.getElementById('storyFb').className='feedback';
+  renderChoices('storyGrid',q.c,q.a,'storyFb','story',nextStory);
+}
+
+// ═══════════════════════════════════
+// MATH
+// ═══════════════════════════════════
+let dotsNum=0;
+function nextDots(){
+  dotsNum=Math.floor(Math.random()*15)+1;
+  let html='';
+  for(let i=0;i<dotsNum;i++) html+=`<span style="display:inline-block;margin:3px;animation:popIn .2s ${i*.04}s both">🔵</span>`;
+  document.getElementById('dotsArea').innerHTML=html;
+  document.getElementById('mathFb').textContent=''; document.getElementById('mathFb').className='feedback';
+  const ch=new Set([dotsNum]);
+  while(ch.size<4){const n=Math.floor(Math.random()*18)+1; ch.add(n);}
+  const box=document.getElementById('mathGrid'); box.innerHTML='';
+  [...ch].sort(()=>Math.random()-.5).forEach(n=>{
+    const b=document.createElement('button'); b.className='choice-btn'; b.textContent=n;
+    b.onclick=()=>{
+      const ok=n===dotsNum; b.classList.add(ok?'correct':'wrong');
+      document.getElementById('mathFb').textContent=ok?'🎉 '+dotsNum+' dots!':'❌ There are '+dotsNum;
+      document.getElementById('mathFb').className='feedback '+(ok?'good':'bad');
+      tally('dots',ok);
+      if(ok)setTimeout(nextDots,900); else setTimeout(()=>b.classList.remove('wrong'),600);
+    };
+    box.appendChild(b);
+  });
+}
+
+function nextCompare(){
+  const a=Math.floor(Math.random()*15)+1, b=Math.floor(Math.random()*15)+1;
+  document.getElementById('compareRow').innerHTML=
+    `<div class="compare-box"><div class="compare-num">${a}</div><div class="compare-label">Group A</div></div>
+     <div style="font-family:'Baloo 2',cursive;font-size:2rem;color:#ccc">VS</div>
+     <div class="compare-box"><div class="compare-num">${b}</div><div class="compare-label">Group B</div></div>`;
+  document.getElementById('compareFb').textContent=''; document.getElementById('compareFb').className='feedback';
+  const ans=a>b?'A is more':b>a?'B is more':'They\'re equal';
+  const choices=a===b?['They\'re equal','A is more','B is more']:a>b?['A is more','B is more','They\'re equal']:['B is more','A is more','They\'re equal'];
+  renderChoices('compareGrid',choices,ans,'compareFb','compare',nextCompare);
+}
+
+const addProbs=[];
+for(let a=1;a<=5;a++) for(let b=1;b<=5;b++) addProbs.push({q:`${a} + ${b} = ?`,a:a+b,c:[a+b,a+b+1,a+b-1,a+b+2].filter(v=>v>0)});
+let addIdx=0;
+function nextAdd(){
+  const q=addProbs[addIdx%addProbs.length]; addIdx++;
+  document.getElementById('addQ').textContent=q.q;
+  const dots=q.q.split('+')[0].trim(); let dhtml='';
+  for(let i=0;i<parseInt(dots);i++) dhtml+='🟡';
+  dhtml+=' + ';
+  const dots2=q.q.split('+')[1].split('=')[0].trim();
+  for(let i=0;i<parseInt(dots2);i++) dhtml+='🟢';
+  document.getElementById('addHint').textContent=dhtml;
+  document.getElementById('addFb').textContent=''; document.getElementById('addFb').className='feedback';
+  const unique=[...new Set(q.c.sort(()=>Math.random()-.5))].slice(0,4);
+  renderChoices('addGrid',unique,q.a,'addFb','add',nextAdd);
+}
+
+const shapes=[
+  {e:'🔵',n:'Circle',c:['Circle','Square','Triangle','Oval']},
+  {e:'🔷',n:'Diamond',c:['Diamond','Square','Rectangle','Triangle']},
+  {e:'⬜',n:'Square',c:['Square','Circle','Rectangle','Triangle']},
+  {e:'🔺',n:'Triangle',c:['Triangle','Circle','Square','Pentagon']},
+  {e:'🟥',n:'Rectangle',c:['Rectangle','Square','Circle','Triangle']},
+  {e:'⭐',n:'Star',c:['Star','Circle','Square','Diamond']},
+  {e:'❤️',n:'Heart',c:['Heart','Circle','Oval','Star']},
+  {e:'🔶',n:'Hexagon',c:['Hexagon','Pentagon','Diamond','Octagon']},
+];
+let shapeIdx=0;
+function nextShape(){
+  const q=shapes[shapeIdx%shapes.length]; shapeIdx++;
+  document.getElementById('shapeDisplay').textContent=q.e;
+  document.getElementById('shapeFb').textContent=''; document.getElementById('shapeFb').className='feedback';
+  renderChoices('shapeGrid',q.c,q.n,'shapeFb','shape',nextShape);
+}
+
+// ═══════════════════════════════════
+// PATTERNS
+// ═══════════════════════════════════
+const patterns=[
+  {seq:['🔵','🔴','🔵','🔴','🔵'],next:'🔴',c:['🔴','🟢','🟡','🟣']},
+  {seq:['⭐','🌙','⭐','🌙','⭐'],next:'🌙',c:['🌙','⭐','🌞','☁️']},
+  {seq:['🐶','🐱','🐶','🐱','🐶'],next:'🐱',c:['🐱','🐶','🐸','🐰']},
+  {seq:['🍎','🍊','🍋','🍎','🍊'],next:'🍋',c:['🍋','🍎','🍊','🍇']},
+  {seq:['🔴','🔴','🔵','🔴','🔴'],next:'🔵',c:['🔵','🔴','🟢','🟡']},
+  {seq:['🌸','🌿','🌸','🌿','🌸'],next:'🌿',c:['🌿','🌸','🌺','🌻']},
+  {seq:['1️⃣','2️⃣','3️⃣','1️⃣','2️⃣'],next:'3️⃣',c:['3️⃣','1️⃣','4️⃣','2️⃣']},
+  {seq:['🟥','🟦','🟩','🟥','🟦'],next:'🟩',c:['🟩','🟥','🟦','🟨']},
+  {seq:['🐘','🐘','🐭','🐘','🐘'],next:'🐭',c:['🐭','🐘','🐸','🦁']},
+];
+let patIdx=0;
+function nextPattern(){
+  const q=patterns[patIdx%patterns.length]; patIdx++;
+  const row=document.getElementById('patRow');
+  row.innerHTML=q.seq.map(s=>`<div class="pattern-shape">${s}</div>`).join('')+
+    `<div style="font-family:'Baloo 2',cursive;font-size:1.5rem;color:#ccc;display:flex;align-items:center;padding:0 4px">→</div>`+
+    `<div class="pattern-blank">?</div>`;
+  document.getElementById('patFb').textContent=''; document.getElementById('patFb').className='feedback';
+  renderChoices('patGrid',q.c,q.next,'patFb','pat',nextPattern);
+}
+
+const colorPats=[
+  {seq:['🔴','🔵','🔴','🔵'],next:'🔴',label:['Red','Blue','Red','Blue'],nextLabel:'Red',c:['🔴 Red','🔵 Blue','🟢 Green','🟡 Yellow'],ca:'🔴 Red'},
+  {seq:['🟡','🟡','🔴','🟡','🟡'],next:'🔴',c:['🔴 Red','🟡 Yellow','🔵 Blue','🟢 Green'],ca:'🔴 Red'},
+  {seq:['🟢','🔵','🟡','🟢','🔵'],next:'🟡',c:['🟡 Yellow','🟢 Green','🔵 Blue','🔴 Red'],ca:'🟡 Yellow'},
+];
+let cpIdx=0;
+function nextColorPat(){
+  const q=colorPats[cpIdx%colorPats.length]; cpIdx++;
+  const row=document.getElementById('colorPatRow');
+  row.innerHTML=q.seq.map(s=>`<div class="pattern-shape" style="font-size:1.8rem">${s}</div>`).join('')+
+    `<div style="font-family:'Baloo 2',cursive;font-size:1.5rem;color:#ccc;display:flex;align-items:center;padding:0 4px">→</div>`+
+    `<div class="pattern-blank">?</div>`;
+  document.getElementById('colorFb').textContent=''; document.getElementById('colorFb').className='feedback';
+  renderChoices('colorPatGrid',q.c,q.ca,'colorFb','colorPat',nextColorPat);
+}
+
+const oddOnes=[
+  {items:[{e:'🐶',l:'Dog'},{e:'🐱',l:'Cat'},{e:'🐸',l:'Frog'},{e:'🍎',l:'Apple'}],odd:'🍎 Apple',reason:'Not an animal'},
+  {items:[{e:'🍎',l:'Apple'},{e:'🍊',l:'Orange'},{e:'🍋',l:'Lemon'},{e:'🥕',l:'Carrot'}],odd:'🥕 Carrot',reason:'Not a fruit'},
+  {items:[{e:'🔵',l:'Circle'},{e:'🔺',l:'Triangle'},{e:'⬜',l:'Square'},{e:'⭐',l:'Star'}],odd:'⭐ Star',reason:'Not a basic shape with flat sides / circle is round'},
+  {items:[{e:'🚗',l:'Car'},{e:'🚌',l:'Bus'},{e:'✈️',l:'Plane'},{e:'🍕',l:'Pizza'}],odd:'🍕 Pizza',reason:'Not a vehicle'},
+  {items:[{e:'🔴',l:'Red'},{e:'🔵',l:'Blue'},{e:'🐘',l:'Elephant'},{e:'🟢',l:'Green'}],odd:'🐘 Elephant',reason:'Not a color'},
+];
+let oddIdx=0;
+function nextOdd(){
+  const q=oddOnes[oddIdx%oddOnes.length]; oddIdx++;
+  const row=document.getElementById('oddRow'); row.innerHTML='';
+  document.getElementById('oddFb').textContent=''; document.getElementById('oddFb').className='feedback';
+  q.items.forEach(item=>{
+    const b=document.createElement('button');
+    b.style.cssText='margin:6px;padding:14px 20px;border-radius:14px;border:2.5px solid #e8e4f0;background:#fff;font-size:1.1rem;cursor:pointer;transition:all .15s;font-family:Nunito,sans-serif;font-weight:700';
+    b.textContent=item.e+' '+item.l;
+    b.onmouseover=()=>b.style.borderColor='var(--plum)';
+    b.onmouseout=()=>b.style.borderColor='#e8e4f0';
+    b.onclick=()=>{
+      const val=item.e+' '+item.l;
+      const ok=val===q.odd;
+      b.style.background=ok?'var(--green)':'var(--rose)';
+      b.style.color='#fff';
+      b.style.borderColor=ok?'#00b894':'var(--rose)';
+      const fb=document.getElementById('oddFb');
+      fb.textContent=ok?'🎉 Correct! '+q.reason:'❌ Try again — it\'s '+q.odd+' ('+q.reason+')';
+      fb.className='feedback '+(ok?'good':'bad');
+      tally('odd',ok);
+      if(ok) setTimeout(nextOdd,1200);
+      else setTimeout(()=>{b.style.background='#fff';b.style.color='';b.style.borderColor='#e8e4f0';},700);
+    };
+    row.appendChild(b);
+  });
+}
+
+// ═══════════════════════════════════
+// VOCAB
+// ═══════════════════════════════════
+const vocabItems=[
+  {e:'🌺',a:'Flower',c:['Flower','Leaf','Tree','Bush']},
+  {e:'🦋',a:'Butterfly',c:['Butterfly','Moth','Bee','Fly']},
+  {e:'🏔️',a:'Mountain',c:['Mountain','Hill','Volcano','Valley']},
+  {e:'🌊',a:'Wave',c:['Wave','River','Lake','Pond']},
+  {e:'🎻',a:'Violin',c:['Violin','Guitar','Cello','Flute']},
+  {e:'🦊',a:'Fox',c:['Fox','Wolf','Dog','Cat']},
+  {e:'🌵',a:'Cactus',c:['Cactus','Palm Tree','Bush','Fern']},
+  {e:'⚓',a:'Anchor',c:['Anchor','Chain','Hook','Rope']},
+  {e:'🔭',a:'Telescope',c:['Telescope','Microscope','Camera','Binoculars']},
+  {e:'🌋',a:'Volcano',c:['Volcano','Mountain','Hill','Crater']},
+];
+let vIdx=0;
+function nextVocab(){
+  const q=vocabItems[vIdx%vocabItems.length]; vIdx++;
+  document.getElementById('vocabEmoji').textContent=q.e;
+  document.getElementById('vocabFb').textContent=''; document.getElementById('vocabFb').className='feedback';
+  renderChoices('vocabGrid',q.c,q.a,'vocabFb','vocab',nextVocab);
+}
+
+const analogies=[
+  {q:'Dog is to puppy as cat is to ___?',a:'Kitten',c:['Kitten','Cub','Lamb','Chick']},
+  {q:'Day is to night as hot is to ___?',a:'Cold',c:['Cold','Warm','Dark','Wet']},
+  {q:'Bird is to nest as fish is to ___?',a:'Water',c:['Water','Sky','Sand','Tree']},
+  {q:'Eyes are for seeing — ears are for ___?',a:'Hearing',c:['Hearing','Tasting','Smelling','Touching']},
+  {q:'Apple is to red as banana is to ___?',a:'Yellow',c:['Yellow','Green','Blue','Purple']},
+  {q:'Big is to small as tall is to ___?',a:'Short',c:['Short','Long','Wide','Thin']},
+  {q:'Lion is to roar as dog is to ___?',a:'Bark',c:['Bark','Meow','Moo','Quack']},
+  {q:'Ice cream is cold — soup is ___?',a:'Hot',c:['Hot','Cold','Soft','Hard']},
+];
+let aIdx=0;
+function nextAnalogy(){
+  const q=analogies[aIdx%analogies.length]; aIdx++;
+  document.getElementById('analogyQ').textContent=q.q;
+  document.getElementById('analogyFb').textContent=''; document.getElementById('analogyFb').className='feedback';
+  renderChoices('analogyGrid',q.c,q.a,'analogyFb','analogy',nextAnalogy);
+}
+
+// ═══════════════════════════════════
+// LISTENING
+// ═══════════════════════════════════
+const directions=[
+  {q:'Tap the animal that lives in the water.',a:'🐟 Fish',c:['🐟 Fish','🐶 Dog','🐦 Bird','🦁 Lion']},
+  {q:'Tap the thing you use to write.',a:'✏️ Pencil',c:['✏️ Pencil','🍎 Apple','🎈 Balloon','👟 Shoe']},
+  {q:'Tap the food that is a fruit.',a:'🍊 Orange',c:['🍊 Orange','🥕 Carrot','🥦 Broccoli','🧅 Onion']},
+  {q:'Tap the vehicle that flies in the sky.',a:'✈️ Plane',c:['✈️ Plane','🚗 Car','🚌 Bus','🚢 Ship']},
+  {q:'Tap the animal that gives us milk.',a:'🐄 Cow',c:['🐄 Cow','🦁 Lion','🦊 Fox','🐺 Wolf']},
+  {q:'Tap the season when it snows.',a:'❄️ Winter',c:['❄️ Winter','🌸 Spring','☀️ Summer','🍂 Fall']},
+  {q:'Tap the shape with 3 sides.',a:'🔺 Triangle',c:['🔺 Triangle','⬜ Square','🔵 Circle','🔷 Diamond']},
+  {q:'Tap the number that comes after 7.',a:'8',c:['8','6','9','10']},
+];
+let dIdx=0;
+function nextDir(){
+  const q=directions[dIdx%directions.length]; dIdx++;
+  document.getElementById('dirQ').textContent=q.q;
+  document.getElementById('dirFb').textContent=''; document.getElementById('dirFb').className='feedback';
+  renderChoices('dirGrid',q.c,q.a,'dirFb','dir',nextDir);
+}
+
+const recalls=[
+  {s:'Zoe had a little lamb. It followed her to school one day. The kids all laughed and played.',q:'Where did the lamb follow Zoe?',a:'To school',c:['To school','To the park','To the store','To the barn']},
+  {s:'Ben found a tiny frog by the pond. He picked it up gently. The frog jumped back into the water.',q:'What did Ben find?',a:'A frog',c:['A frog','A fish','A turtle','A duck']},
+  {s:'It was Max\'s birthday. He had a chocolate cake with 5 candles. He blew them all out!',q:'How many candles were on the cake?',a:'5',c:['5','3','6','4']},
+  {s:'Luna saw lightning in the sky. She started counting: one, two, three. Then she heard thunder.',q:'What did Luna see first?',a:'Lightning',c:['Lightning','Thunder','Rain','Clouds']},
+];
+let rcIdx=0;
+function nextRecall(){
+  const q=recalls[rcIdx%recalls.length]; rcIdx++;
+  document.getElementById('recallStory').textContent=q.s;
+  document.getElementById('recallQ').textContent='❓ '+q.q;
+  document.getElementById('recallFb').textContent=''; document.getElementById('recallFb').className='feedback';
+  renderChoices('recallGrid',q.c,q.a,'recallFb','recall',nextRecall);
+}
+
+// ═══════════════════════════════════
+// WRITING
+// ═══════════════════════════════════
+const canvas=document.getElementById('traceCanvas');
+const ctx=canvas.getContext('2d');
+ctx.strokeStyle='#6C5CE7'; ctx.lineWidth=6; ctx.lineCap='round';
+let drawing=false;
+const traceAlpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+let tIdx=0;
+
+function pos(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*(canvas.width/r.width),y:(e.clientY-r.top)*(canvas.height/r.height)};}
+function tpos(e){const r=canvas.getBoundingClientRect(),t=e.touches[0];return{x:(t.clientX-r.left)*(canvas.width/r.width),y:(t.clientY-r.top)*(canvas.height/r.height)};}
+canvas.addEventListener('mousedown',e=>{drawing=true;ctx.beginPath();ctx.moveTo(pos(e).x,pos(e).y);});
+canvas.addEventListener('mousemove',e=>{if(!drawing)return;ctx.lineTo(pos(e).x,pos(e).y);ctx.stroke();});
+canvas.addEventListener('mouseup',()=>drawing=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;ctx.beginPath();ctx.moveTo(tpos(e).x,tpos(e).y);});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;ctx.lineTo(tpos(e).x,tpos(e).y);ctx.stroke();});
+canvas.addEventListener('touchend',()=>drawing=false);
+function clearCanvas(){ctx.clearRect(0,0,canvas.width,canvas.height);}
+function nextTrace(){tIdx=(tIdx+1)%traceAlpha.length;document.getElementById('traceLetter').textContent=traceAlpha[tIdx];clearCanvas();}
+
+const sentences=[
+  {words:['The','cat','is','big','.'],answer:'The cat is big .'},
+  {words:['I','see','a','dog','.'],answer:'I see a dog .'},
+  {words:['She','can','run','fast','.'],answer:'She can run fast .'},
+  {words:['We','like','to','play','.'],answer:'We like to play .'},
+  {words:['The','sun','is','hot','.'],answer:'The sun is hot .'},
+];
+let sentIdx=0, sentBuilt=[], sentData=null;
+function nextSent(){
+  sentData=sentences[sentIdx%sentences.length]; sentIdx++;
+  resetSent();
+}
+function resetSent(){
+  if(!sentData) return;
+  sentBuilt=[];
+  document.getElementById('sentBox').textContent='Tap words to build your sentence…';
+  document.getElementById('sentFb').textContent=''; document.getElementById('sentFb').className='feedback';
+  const box=document.getElementById('sentWords'); box.innerHTML='';
+  [...sentData.words].sort(()=>Math.random()-.5).forEach(w=>{
+    const b=document.createElement('button'); b.className='word-chip'; b.textContent=w;
+    b.onclick=()=>{
+      if(b.classList.contains('used')) return;
+      b.classList.add('used');
+      sentBuilt.push(w);
+      document.getElementById('sentBox').textContent=sentBuilt.join(' ')||'Tap words to build your sentence…';
+    };
+    box.appendChild(b);
+  });
+}
+function checkSent(){
+  if(!sentData) return;
+  const built=sentBuilt.join(' ');
+  const ok=built===sentData.answer;
+  const fb=document.getElementById('sentFb');
+  fb.textContent=ok?'🎉 Perfect sentence!':'❌ Try again! Order: '+sentData.answer;
+  fb.className='feedback '+(ok?'good':'bad');
+  tally('sent',ok);
+}
+
+// ═══════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════
+function updateProgress(){
+  const display=document.getElementById('starDisplay');
+  display.textContent=totalStars>0?'⭐'.repeat(Math.min(totalStars,30))+(totalStars>30?' +more!':''):'No stars yet — go play some games!';
+
+  const groups={
+    letters: ['letters','caseGame'],
+    phonics: ['rhyme','blend','seg'],
+    reading: ['sight','story'],
+    math: ['dots','compare','add','shape'],
+    patterns: ['pat','colorPat','odd'],
+    vocab: ['vocab','analogy'],
+    listening: ['dir','recall'],
+  };
+  Object.keys(groups).forEach(gk=>{
+    let right=0,total=0;
+    groups[gk].forEach(k=>{ right+=SC[k][0]; total+=SC[k][1]; });
+    const pct=total?Math.round(right/total*100):0;
+    const bar=document.getElementById('bar-'+gk);
+    const pctEl=document.getElementById('pct-'+gk);
+    if(bar){ bar.style.width=pct+'%'; }
+    if(pctEl){ pctEl.textContent=total?pct+'%':'—'; }
+  });
+}
+
+// ═══════════════════════════════════
+// INIT ALL GAMES
+// ═══════════════════════════════════
+nextLetter(); nextCase();
+nextRhyme(); nextBlend(); nextSeg();
+nextSight(); nextStory();
+nextDots(); nextCompare(); nextAdd(); nextShape();
+nextPattern(); nextColorPat(); nextOdd();
+nextVocab(); nextAnalogy();
+nextDir(); nextRecall();
+nextSent();
+
+// pop animation
+const s=document.createElement('style');
+s.textContent='@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}';
+document.head.appendChild(s);
+</script>
+</body>
+</html>
